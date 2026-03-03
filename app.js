@@ -91,7 +91,7 @@ function barByCity(month, metric) {
         title: { display: true, text: `City comparison (${month})` }
       },
       scales: {
-        y: { title: { display: true, text: metric } },
+        y: { title: { display: true, text: "Value" } },
         x: { title: { display: true, text: "City" } }
       }
     }
