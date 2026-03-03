@@ -37,14 +37,13 @@ renderBtn.addEventListener("click", () => {
 
   // Build chart config based on type
   const config = buildConfig(chartType, { month, city, metric });
-
   currentChart = new Chart(canvas, config);
 });
 
 // --- Students: you’ll edit / extend these functions ---
 function buildConfig(type, { month, city, metric }) {
   if (type === "bar") return barByCity(month, metric);
-  if (type === "line") return lineOverTime(city, metric);
+  if (type === "line") return lineOverTime(city, ['avgTempC', 'minTempC', 'maxTempC']);
   return barByCity(month, metric);
 }
 
@@ -52,20 +51,19 @@ const optionpicked1 = document.getElementById('chartType')
 const optionpicked2 = document.getElementById('metricSelect')
 
 optionpicked1.addEventListener('change', function () {
-  const option = optionpicked2.querySelector('option[value="avgTempC"]');
-  const option2 = optionpicked2.querySelector('option[value="minTempC"]');
-  const option3 = optionpicked2.querySelector('option[value="maxTempC"]');
+  const optionA = optionpicked2.querySelector('option[value="avgTempC"]');
+  const optionA4 = optionpicked2.querySelector('option[value="precipMM"]');
 
-  if (this.value === 'line') {
-    option.disabled = true;
-    option2.disabled = true;
-    option3.disabled = true;
+  if (this.value === 'bar') {
+    optionA.disabled = true;
+    optionA4.disabled = false;
   } else {
-    option.disabled = false;
-    option2.disabled = false;
-    option3.disabled = false;
+    optionA.disabled = false;
+    optionA4.disabled = true;
   }
 }); 
+
+
 
 
 
@@ -118,7 +116,7 @@ function lineOverTime(city, metric) {
         title: { display: true, text: `Trends over time: ${city}` }
       },
       scales: {
-        y: { title: { display: true, text: `${metric}` } },
+        y: { title: { display: true, text: "Value" } },
         x: { title: { display: true, text: "Month" } }
       }
     }
