@@ -48,6 +48,27 @@ function buildConfig(type, { month, city, metric }) {
   return barByCity(month, metric);
 }
 
+const optionpicked1 = document.getElementById('chartType')
+const optionpicked2 = document.getElementById('metricSelect')
+
+optionpicked1.addEventListener('change', function () {
+  const option = optionpicked2.querySelector('option[value="avgTempC"]');
+  const option2 = optionpicked2.querySelector('option[value="minTempC"]');
+  const option3 = optionpicked2.querySelector('option[value="maxTempC"]');
+
+  if (this.value === 'line') {
+    option.disabled = true;
+    option2.disabled = true;
+    option3.disabled = true;
+  } else {
+    option.disabled = false;
+    option2.disabled = false;
+    option3.disabled = false;
+  }
+}); 
+
+
+
 // Task A: BAR — compare cities for a given month
 function barByCity(month, metric) { 
   const rows = chartData.filter(r => r.month === month);
